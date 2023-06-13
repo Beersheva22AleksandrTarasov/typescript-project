@@ -17,3 +17,4 @@ Array.from(map1.entries()).forEach(e => console.log(`${e[0]} -> ${e[1]}`));
 function f(a: string | number): number{
     return typeof a == "number" ? a * 2 : +(a + 2);
 }
+
