@@ -34,15 +34,33 @@ function displayPerson(prs: Person): void {
     prs.gender && console.log(prs.gender?.substring(0, 3))
 }
 
-function cipher(test: string, key: number): string{
-    //TODO
-    //cipher("yz", 6) => " !"
-    return "";
+const MIN_CODE = 32
+const MAX_CODE = 127
+const ALPHABET_LENGTH = MAX_CODE - MIN_CODE + 1
+
+function cipher (text: string, key: number): string {
+  key = getKey(key)
+  return Array.from(text).map((symb) => shiftSymbol(symb, key)).join('')
 }
-function decipher(test: string, key: number): string{
-    //TODO
-    //decipher(" !", 6) => "yz"
-    return "";
+
+function decipher (text: string, key: number): string {
+  return cipher(text, -key)
+}
+
+function getKey (key: number): number {
+  key = key % ALPHABET_LENGTH
+  if (key < 0) {
+    key = ALPHABET_LENGTH + key
+  }
+  return key
+}
+
+function shiftSymbol (symb: string, key: number): string {
+  const newCode = symb.charCodeAt(0) + key
+  const shiftedSymb = newCode > MAX_CODE
+    ? newCode - ALPHABET_LENGTH
+    : newCode
+  return String.fromCharCode(shiftedSymb)
 }
 
 const shape: Rectangle = new Rectangle(3, 4);

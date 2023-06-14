@@ -31,11 +31,29 @@ function displayPerson(prs) {
     var _a;
     prs.gender && console.log((_a = prs.gender) === null || _a === void 0 ? void 0 : _a.substring(0, 3));
 }
-function cipher(test, key) {
-    return "";
+var MIN_CODE = 32;
+var MAX_CODE = 127;
+var ALPHABET_LENGTH = MAX_CODE - MIN_CODE + 1;
+function cipher(text, key) {
+    key = getKey(key);
+    return Array.from(text).map(function (symb) { return shiftSymbol(symb, key); }).join('');
 }
-function decipher(test, key) {
-    return "";
+function decipher(text, key) {
+    return cipher(text, -key);
+}
+function getKey(key) {
+    key = key % ALPHABET_LENGTH;
+    if (key < 0) {
+        key = ALPHABET_LENGTH + key;
+    }
+    return key;
+}
+function shiftSymbol(symb, key) {
+    var newCode = symb.charCodeAt(0) + key;
+    var shiftedSymb = newCode > MAX_CODE
+        ? newCode - ALPHABET_LENGTH
+        : newCode;
+    return String.fromCharCode(shiftedSymb);
 }
 var shape = new Rectangle_1.default(3, 4);
 var width = shape.width;
