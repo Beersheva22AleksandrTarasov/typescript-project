@@ -1,5 +1,3 @@
-import Rectangle from "./Rectangle";
-
 let n = 10;
 n = 20;
 let num: number | 'abc' = 12;
@@ -33,20 +31,6 @@ displayPerson({ id: 123, date: "2000-10-10", name: "Vasya" })
 function displayPerson(prs: Person): void {
     prs.gender && console.log(prs.gender?.substring(0, 3))
 }
-
-function cipher(test: string, key: number): string{
-    //TODO
-    //cipher("yz", 6) => " !"
-    return "";
-}
-function decipher(test: string, key: number): string{
-    //TODO
-    //decipher(" !", 6) => "yz"
-    return "";
-}
-
-const shape: Rectangle = new Rectangle(3, 4);
-let width = shape.width;
 
 
 
